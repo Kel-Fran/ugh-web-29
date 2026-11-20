@@ -5,24 +5,24 @@ import { toCreateInfo } from './types/Reservation.js';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+    constructor(private readonly appService: AppService) { }
 
-  @Get()
-  @Render('index')
-  getHello() {
-    return {};
-  }
+    @Get()
+    @Render('index')
+    getHello() {
+        return {};
+    }
 
-  @Post()
-  @Render('index')
-  async postHello(@Body()body:ReservationDTO) {
-    const [info, errors] = toCreateInfo(body);
-    if (info) {
-      await this.appService.createReservation(info);
-      return {success:true};
+    @Post()
+    @Render('index')
+    async postHello(@Body() body: ReservationDTO) {
+        const [info, errors] = toCreateInfo(body);
+        if (info) {
+            await this.appService.createReservation(info);
+            return { success: true };
+        }
+        else {
+            return { ...body, errors: errors.map(it => it.join(': ')) };
+        }
     }
-    else {
-      return {...body, errors: errors.map(it => it.join(': '))};
-    }
-  }
 }
