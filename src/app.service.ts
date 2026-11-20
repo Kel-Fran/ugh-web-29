@@ -20,4 +20,9 @@ export class AppService {
         const [inserted] = await msqlc.execute<ResultSetHeader>('INSERT INTO reservations(name, email, startDate, guests) VALUES (?,?,?,?)', [info.name, info.email, info.startDate, info.guests])
         return { id: inserted.insertId, ...info } satisfies Reservation;
     }
+
+    async getReservationCount() {
+        const [results] = await msqlc.execute('SELECT COUNT(id) AS cnt FROM reservations');
+        return (results as [{ cnt: number }])[0].cnt;
+    }
 }

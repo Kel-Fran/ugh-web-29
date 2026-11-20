@@ -1,5 +1,6 @@
 <%
 const {
+    count = 0,
     name = '',
     email = '',
     startDate = '',
@@ -19,6 +20,7 @@ const {
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <h1>total reservations: <%=count%></h1>
     <form method="POST">
         <label for="name">name</label>
         <input type="text" name="name" value="<%=name%>" required min="1">

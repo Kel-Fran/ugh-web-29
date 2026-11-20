@@ -9,20 +9,21 @@ export class AppController {
 
     @Get()
     @Render('index')
-    getHello() {
-        return {};
+    async getHello() {
+        return { count: await this.appService.getReservationCount() };
     }
 
     @Post()
     @Render('index')
     async postHello(@Body() body: ReservationDTO) {
+        const count = await this.appService.getReservationCount();
         const [info, errors] = toCreateInfo(body);
         if (info) {
             await this.appService.createReservation(info);
-            return { success: true };
+            return { success: true, count };
         }
         else {
-            return { ...body, errors: errors.map(it => it.join(': ')) };
+            return { ...body, errors: errors.map(it => it.join(': ')), count };
         }
     }
 }
