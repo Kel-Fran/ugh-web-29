@@ -8,8 +8,5 @@ export class AppController {
   @Get()
   @Render('index')
   getHello() {
-    return {
-      title: 'My First NestJS App'
-    }
   }
 }
