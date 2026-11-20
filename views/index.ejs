@@ -27,7 +27,7 @@ const {
         <input type="email" name="email" value="<%=email%>" required>
 
         <label for="startDate">start date</label>
-        <input type="datetime-local" name="startDate" value="<%=startDate%>" required min="<%=new Date()%>">
+        <input type="datetime-local" name="startDate" value="<%=startDate%>" required min="<%=new Date().toISOString().split('T')[0]%>">
 
         <label for="guests">(number of) guests</label>
         <input type="number" name="guests" value="<%=guests%>" required min="1" max="10">
