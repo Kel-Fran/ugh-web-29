@@ -21,16 +21,16 @@ const {
 <body>
     <form method="POST">
         <label for="name">name</label>
-        <input type="text" name="name" value=<%=name%>>
+        <input type="text" name="name" value="<%=name%>" required min="1">
 
         <label for="email">email</label>
-        <input type="email" name="email" value=<%=email%>>
+        <input type="email" name="email" value="<%=email%>" required>
 
         <label for="startDate">start date</label>
-        <input type="datetime-local" name="startDate" value=<%=startDate%>>
+        <input type="datetime-local" name="startDate" value="<%=startDate%>" required min="<%=new Date()%>">
 
         <label for="guests">(number of) guests</label>
-        <input type="number" name="guests" value=<%=guests%>>
+        <input type="number" name="guests" value="<%=guests%>" required min="1" max="10">
 
         <input type="submit">
     </form>
