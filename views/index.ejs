@@ -1,3 +1,13 @@
+<%
+const {
+    name = '',
+    email = '',
+    startDate = '',
+    guests = '',
+    errors = [],
+    success = false,
+} = locals;
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,5 +19,26 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <form method="POST">
+        <label for="name">name</label>
+        <input type="text" name="name" value=<%=name%>>
+
+        <label for="email">email</label>
+        <input type="email" name="email" value=<%=email%>>
+
+        <label for="startDate">start date</label>
+        <input type="datetime-local" name="startDate" value=<%=startDate%>>
+
+        <label for="guests">(number of) guests</label>
+        <input type="number" name="guests" value=<%=guests%>>
+
+        <input type="submit">
+    </form>
+    <% for (const e of errors) { %>
+        <p><%=e%></p>
+    <% } %>
+    <% if (success) { %>
+        <p>reservation created successfully</p>
+    <% } %>
 </body>
 </html>
